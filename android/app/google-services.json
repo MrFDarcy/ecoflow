@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "39751371043",
+    "project_id": "ecoflow-adbd3",
+    "storage_bucket": "ecoflow-adbd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39751371043:android:fd31c1aa55557a8e516496",
+        "android_client_info": {
+          "package_name": "com.ecoflow.app.ecoflow_v3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39751371043-0u50d14fre27dh5465bgvllu45aun7ng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_r7Y47z3rdSnq9hV1t_VFUFQOx5cSDJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39751371043-0u50d14fre27dh5465bgvllu45aun7ng.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "39751371043-88c223ps0kufr8rkkdv0padsfq9f6etu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecoflow.app.ecoflowV3"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

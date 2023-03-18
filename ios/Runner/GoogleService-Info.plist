@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>39751371043-88c223ps0kufr8rkkdv0padsfq9f6etu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.39751371043-88c223ps0kufr8rkkdv0padsfq9f6etu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAlrvqmZYKNuXMISo8qCxyLaqL3J7Zja2g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>39751371043</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ecoflow.app.ecoflowV3</string>
+	<key>PROJECT_ID</key>
+	<string>ecoflow-adbd3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ecoflow-adbd3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:39751371043:ios:a3112c5e656b71ec516496</string>
+</dict>
+</plist>
