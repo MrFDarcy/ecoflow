@@ -2,11 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import '../models/post.dart';
 
 class PostUploadScreen extends StatefulWidget {
   const PostUploadScreen({Key? key}) : super(key: key);
@@ -17,10 +12,6 @@ class PostUploadScreen extends StatefulWidget {
 
 class _PostUploadScreenState extends State<PostUploadScreen> {
   File? _imageFile;
-
-  final TextEditingController _captionController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  bool _isUploading = false;
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
@@ -33,84 +24,6 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
     setState(() {
       _imageFile = null;
     });
-  }
-
-  Future<void> _uploadPost() async {
-    if (_imageFile == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select an image')),
-      );
-      return;
-    }
-
-    if (_captionController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a caption')),
-      );
-      return;
-    }
-
-    if (_descriptionController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a description')),
-      );
-      return;
-    }
-
-    setState(() {
-      _isUploading = true;
-    });
-
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child('post_images')
-        .child('${DateTime.now().millisecondsSinceEpoch}.jpg');
-    await ref.putFile(_imageFile!);
-
-    final url = await ref.getDownloadURL();
-
-    final post = Post(
-      imageUrl: url,
-      caption: _captionController.text.trim(),
-      description: _descriptionController.text.trim(),
-      timestamp: Timestamp.now(),
-      userId: FirebaseAuth.instance.currentUser!.uid,
-      username: FirebaseAuth.instance.currentUser!.displayName.toString(),
-      userProfileImg: FirebaseAuth.instance.currentUser!.photoURL.toString(),
-    );
-
-    await FirebaseFirestore.instance.collection('posts').add(post.toMap());
-
-    // FirebaseStorage storage = FirebaseStorage.instance;
-    // Reference ref = storage.ref().child("posts/${DateTime.now()}");
-    // UploadTask uploadTask = ref.putFile(_imageFile!);
-    // String url = await (await uploadTask).ref.getDownloadURL();
-
-    // await FirebaseFirestore.instance.collection('posts').add({
-    //   'imageUrl': url,
-    //   'caption': _captionController.text,
-    //   'description': _descriptionController.text,
-    //   'createdAt': DateTime.now(),
-    // });
-
-    setState(() {
-      _isUploading = false;
-    });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Post uploaded successfully')),
-    );
-
-    _clear();
-
-    @override
-    void dispose() {
-      _captionController.dispose();
-      _descriptionController.dispose();
-      super.dispose();
-    }
-
-    //  Navigator.pop(context);
   }
 
   @override
@@ -186,9 +99,8 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
-                  children: [
+                  children: const [
                     TextField(
-                      controller: _captionController,
                       decoration: InputDecoration(
                         hintText: 'Enter a caption',
                         border: OutlineInputBorder(),
@@ -197,7 +109,6 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
                     ),
                     SizedBox(height: 20),
                     TextField(
-                      controller: _descriptionController,
                       decoration: InputDecoration(
                         hintText: 'Enter description',
                         border: OutlineInputBorder(),
@@ -225,17 +136,12 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
                       ),
                     ),
                   ),
-                  onPressed: () {
-                    _uploadPost();
-                    Navigator.pop(context);
-                  },
+                  onPressed: () {},
                   child: const Text('Submit'),
                 ),
               ),
 
-              const SizedBox(
-                height: 50,
-              )
+              const SizedBox(height: 50),
             ],
           ),
         ),
