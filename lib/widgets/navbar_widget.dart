@@ -33,6 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
         body: pages[currentIndex],
         bottomNavigationBar: NavigationBar(
+          animationDuration: const Duration(milliseconds: 500),
           destinations: const [
             NavigationDestination(
               icon: Icon(Icons.home),
