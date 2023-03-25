@@ -13,6 +13,7 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
+  PageController _pageController = PageController();
 
   List<Widget> pages = [
     const HomeScreen(),
@@ -25,43 +26,52 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void _onItemTapped(int index) {
     setState(() {
       currentIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[currentIndex],
-        bottomNavigationBar: NavigationBar(
-          animationDuration: const Duration(milliseconds: 500),
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.lightbulb),
-              label: 'Actions',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.book),
-              label: 'Resources',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.analytics),
-              label: 'Metrics',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-          selectedIndex: currentIndex,
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-        ));
+      body: PageView(
+        controller: _pageController,
+        children: pages,
+        onPageChanged: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: _onItemTapped,
+        destinations: [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.lightbulb),
+            label: 'Action',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.book),
+            label: 'Resources',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.analytics),
+            label: 'Metrics',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -48,7 +48,23 @@ class _MyAppState extends State<MyApp> {
                 title: 'Flutter Demo',
                 theme: ThemeData(
                   useMaterial3: true,
-                  primarySwatch: Colors.green,
+                  primaryColor: Colors.green,
+                  colorScheme: ColorScheme.fromSwatch(
+                    primarySwatch: Colors.green,
+                  ),
+                ),
+
+                themeMode: ThemeMode.system,
+
+                darkTheme: ThemeData(
+                  brightness: Brightness.dark,
+                  primaryColor: Colors.green,
+                  colorScheme: ColorScheme.fromSwatch(
+                    primarySwatch: Colors.green,
+                    brightness: Brightness
+                        .dark, // Add this line to match ThemeData brightness
+                  ),
+                  useMaterial3: true,
                 ),
                 routes: appRoutes,
                 // initialRoute: '/'

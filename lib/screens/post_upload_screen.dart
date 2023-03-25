@@ -50,12 +50,12 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
       return;
     }
 
-    if (_descriptionController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a description')),
-      );
-      return;
-    }
+    // if (_descriptionController.text.isEmpty) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(content: Text('Please enter a description')),
+    //   );
+    //   return;
+    // }
 
     setState(() {
       _isUploading = true;
@@ -226,8 +226,11 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
                     ),
                   ),
                   onPressed: () {
-                    _uploadPost();
-                    Navigator.pop(context);
+                    if (!_captionController.text.isEmpty &&
+                        !_imageFile!.path.isEmpty) {
+                      _uploadPost();
+                      Navigator.pop(context);
+                    }
                   },
                   child: const Text('Submit'),
                 ),

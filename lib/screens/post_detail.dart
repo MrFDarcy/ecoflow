@@ -108,9 +108,9 @@ class PostDetailsScreen extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  post.description == ""
-                      ? "This post has no description"
-                      : post.description,
+                  post.description != null
+                      ? post.description.toString()
+                      : "This post has no description",
                   style: TextStyle(
                     fontSize: 15,
                   ),

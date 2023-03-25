@@ -13,24 +13,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('HomeScreen'),
-        // show current user icon if user is logged in else show anonymous icon
-        actions: [
-          if (AuthService().user != null)
-            IconButton(
-                onPressed: () {},
-                icon: AuthService().user!.photoURL != null
-                    ? CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          AuthService().user!.photoURL!,
-                        ),
-                      )
-                    : const Icon(Icons.person_outline))
-          else
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.person_outline),
-            ),
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -95,6 +77,8 @@ class HomeScreen extends StatelessWidget {
                             snapshot.data!.docs[index].id,
                           );
 
+// show loading indicator if snapshot is not yet loaded
+
                           return GestureDetector(
                             onTap: () {
                               Navigator.of(context).pushNamed(
@@ -112,10 +96,9 @@ class HomeScreen extends StatelessWidget {
                                       height: 500,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
-                                          image: NetworkImage(
-                                            post.imageUrl,
-                                          ),
                                           fit: BoxFit.cover,
+                                          // Use FadeInImage widget instead of NetworkImage
+                                          image: NetworkImage(post.imageUrl),
                                         ),
                                       ),
                                       child: Container(
@@ -205,3 +188,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+`

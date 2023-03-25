@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Post {
   String? id = '';
   String caption = '';
-  String description = '';
+  String? description = '';
   String imageUrl = '';
   Timestamp timestamp = Timestamp.now();
   String userId = '';
@@ -13,7 +13,7 @@ class Post {
   Post({
     this.id,
     required this.caption,
-    required this.description,
+    this.description,
     required this.imageUrl,
     required this.timestamp,
     required this.userId,
