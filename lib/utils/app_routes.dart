@@ -16,7 +16,7 @@ var appRoutes = {
   '/onboarding': (context) => const OnboardingScreen(),
 
   '/login': (context) => const LoginScreen(),
-
+  '/loginredirect': (context) => const LoginRedirect(),
   '/home': (context) => const HomeScreen(),
 
   '/postdetail': (context) => PostDetailsScreen(),

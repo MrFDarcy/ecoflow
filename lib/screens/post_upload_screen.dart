@@ -75,23 +75,9 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
       description: _descriptionController.text.trim(),
       timestamp: Timestamp.now(),
       userId: FirebaseAuth.instance.currentUser!.uid,
-      username: FirebaseAuth.instance.currentUser!.displayName.toString(),
-      userProfileImg: FirebaseAuth.instance.currentUser!.photoURL.toString(),
     );
 
     await FirebaseFirestore.instance.collection('posts').add(post.toMap());
-
-    // FirebaseStorage storage = FirebaseStorage.instance;
-    // Reference ref = storage.ref().child("posts/${DateTime.now()}");
-    // UploadTask uploadTask = ref.putFile(_imageFile!);
-    // String url = await (await uploadTask).ref.getDownloadURL();
-
-    // await FirebaseFirestore.instance.collection('posts').add({
-    //   'imageUrl': url,
-    //   'caption': _captionController.text,
-    //   'description': _descriptionController.text,
-    //   'createdAt': DateTime.now(),
-    // });
 
     setState(() {
       _isUploading = false;

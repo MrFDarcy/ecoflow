@@ -1,5 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:ecoflow_v3/screens/login_redirect.dart';
+import 'package:ecoflow_v3/screens/onb_redirect.dart';
 import 'package:ecoflow_v3/utils/app_routes.dart';
 import 'package:ecoflow_v3/widgets/navbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,12 @@ class _MyAppState extends State<MyApp> {
                   colorScheme: ColorScheme.fromSwatch(
                     primarySwatch: Colors.green,
                   ),
+                  pageTransitionsTheme: PageTransitionsTheme(
+                    builders: {
+                      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                    },
+                  ),
                 ),
 
                 themeMode: ThemeMode.system,
@@ -65,10 +72,17 @@ class _MyAppState extends State<MyApp> {
                         .dark, // Add this line to match ThemeData brightness
                   ),
                   useMaterial3: true,
+                  pageTransitionsTheme: PageTransitionsTheme(
+                    builders: {
+                      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                    },
+                  ),
                 ),
+
                 routes: appRoutes,
                 // initialRoute: '/'
-                home: const LoginRedirect(),
+                home: const OnboardingRedirect(),
               );
             }
 

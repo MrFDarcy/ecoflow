@@ -4,14 +4,60 @@ import '../models/post.dart';
 
 import "package:photo_view/photo_view.dart";
 
+import "package:ecoflow_v3/models/user.dart";
+
 class PostDetailsScreen extends StatelessWidget {
   PostDetailsScreen({super.key});
 
   static const routeName = '/postdetail';
 
+  Widget imageContainer(post) {
+    return Container(
+      width: double.infinity,
+      height: 500,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          image: NetworkImage(
+            post.imageUrl,
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget userDetails(user) {
+    return Row(
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 10),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+              user.userPhoto,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 10),
+          child: Text(
+            user.name,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Post post = ModalRoute.of(context)!.settings.arguments as Post;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Post post = arguments['post'] as Post;
+    final User user = arguments['user'] as User;
 
     return Scaffold(
         appBar: AppBar(
@@ -38,46 +84,12 @@ class PostDetailsScreen extends StatelessWidget {
                             ),
                           )));
                 },
-                child: Container(
-                  width: double.infinity,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        post.imageUrl,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                child: imageContainer(post),
               ),
-
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        post.userProfileImg,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: Text(
-                      post.username,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              userDetails(user),
               SizedBox(
                 height: 20,
               ),
@@ -94,17 +106,6 @@ class PostDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 10),
-              //   child: Text(
-              //     post.description,
-              //     style: TextStyle(
-              //       fontSize: 20,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
-
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
@@ -116,7 +117,6 @@ class PostDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 10,
               ),

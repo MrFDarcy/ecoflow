@@ -49,6 +49,7 @@ dependencies:
   adaptive_theme: ^3.2.0
   dynamic_color: ^1.5.4
   googleapis: ^10.1.0
+  connectivity: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -74,8 +75,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
+    # - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

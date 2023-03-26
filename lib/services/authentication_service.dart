@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final userStream = FirebaseAuth.instance.authStateChanges();
@@ -23,14 +24,12 @@ class AuthService {
 
   static Future<void> googleLogin() async {
     try {
-      // final googleUser = await GoogleSignIn().signIn();
-
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       print('User signed in: ${googleUser?.displayName}');
 
-      // if (googleUser != null) return;
+      if (googleUser == null) return;
 
-      final googleAuth = await googleUser!.authentication;
+      final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -40,6 +39,18 @@ class AuthService {
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       final user = FirebaseAuth.instance.currentUser;
-    } on FirebaseAuthException catch (e) {}
+
+      if (user != null && !user.isAnonymous) {
+        // Create a document for the user in the "users" collection
+        FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'name': user.displayName,
+          'email': user.email,
+          'userPhoto': user.photoURL,
+          // Add any other user data you want to store
+        });
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle login error
+    }
   }
 }

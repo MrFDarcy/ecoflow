@@ -7,8 +7,6 @@ class Post {
   String imageUrl = '';
   Timestamp timestamp = Timestamp.now();
   String userId = '';
-  String username = '';
-  String userProfileImg = '';
 
   Post({
     this.id,
@@ -17,8 +15,6 @@ class Post {
     required this.imageUrl,
     required this.timestamp,
     required this.userId,
-    required this.username,
-    required this.userProfileImg,
   });
 
   factory Post.fromFirestore(DocumentSnapshot doc) {
@@ -30,8 +26,6 @@ class Post {
       imageUrl: data['imageUrl'] ?? '',
       timestamp: data['timestamp'] ?? Timestamp.now(),
       userId: data['userId'] ?? '',
-      username: data['username'] ?? '',
-      userProfileImg: data['userProfileImg'] ?? '',
     );
   }
 
@@ -42,8 +36,6 @@ class Post {
       'imageUrl': imageUrl,
       'timestamp': timestamp, // use the timestamp field of the object
       'userId': userId,
-      'username': username,
-      'userProfileImg': userProfileImg,
     };
   }
 
@@ -56,8 +48,6 @@ class Post {
         imageUrl: '',
         timestamp: Timestamp.now(),
         userId: '',
-        username: "",
-        userProfileImg: "",
       );
     }
     final String caption = data['caption'] ?? '';
@@ -65,8 +55,6 @@ class Post {
     final String imageUrl = data['imageUrl'] ?? '';
     final Timestamp timestamp = data['timestamp'] ?? Timestamp.now();
     final String userId = data['userId'] ?? '';
-    final String username = data['username'] ?? '';
-    final String userProfileImg = data['userProfileImg'] ?? '';
 
     return Post(
       id: id,
@@ -75,8 +63,6 @@ class Post {
       imageUrl: imageUrl,
       timestamp: timestamp,
       userId: userId,
-      username: username,
-      userProfileImg: userProfileImg,
     );
   }
 }

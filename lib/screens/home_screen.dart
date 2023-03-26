@@ -1,12 +1,117 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import "package:ecoflow_v3/models/user.dart" as MyAppUser;
+import 'package:connectivity/connectivity.dart';
 
 import '../models/post.dart';
 import '../services/authentication_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  Widget loginDialogue(context) {
+    return AlertDialog(
+      title: const Text('Login'),
+      content: const Text('Please login to continue'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).pop();
+            AuthService.signOut();
+          },
+          child: const Text('Login'),
+        ),
+      ],
+    );
+  }
+
+  Widget postCard(post, user) {
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Container(
+        width: double.infinity,
+        height: 500,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              post.imageUrl ?? '',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.transparent,
+                Colors.black.withOpacity(0.5),
+              ],
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        user.userPhoto ?? '',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Text(
+                      user.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  post.caption,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +146,7 @@ class HomeScreen extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) {
-                return AlertDialog(
-                  title: const Text('Login'),
-                  content: const Text('Please login to continue'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        AuthService.signOut();
-                      },
-                      child: const Text('Login'),
-                    ),
-                  ],
-                );
+                return loginDialogue(context);
               },
             );
           }
@@ -96,96 +183,53 @@ class HomeScreen extends StatelessWidget {
                           );
 
                           return GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              final userSnapshot = await FirebaseFirestore
+                                  .instance
+                                  .collection('users')
+                                  .doc(post.userId)
+                                  .get();
+                              final user = MyAppUser.User.fromMap(
+                                  userSnapshot.data() as Map<String, dynamic>,
+                                  userSnapshot.id);
                               Navigator.of(context).pushNamed(
                                 '/postdetail',
-                                arguments: post,
+                                arguments: {
+                                  'post': post,
+                                  'user': user,
+                                },
                               );
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Card(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: Container(
-                                      width: double.infinity,
-                                      height: 500,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            post.imageUrl,
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.transparent,
-                                              Colors.black.withOpacity(0.5),
-                                            ],
-                                          ),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 10),
-                                                  child: CircleAvatar(
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                      post.userProfileImg,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 10),
-                                                  child: Text(
-                                                    post.username,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              child: Text(
-                                                post.caption,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            )
-                                          ],
-                                        ),
-                                      ))),
+                              child: FutureBuilder<
+                                  DocumentSnapshot<Map<String, dynamic>>>(
+                                future: FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(post.userId)
+                                    .get(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                          ConnectionState.done &&
+                                      snapshot.hasData &&
+                                      snapshot.data != null) {
+                                    final userData = snapshot.data!.data();
+                                    final user = MyAppUser.User.fromMap(
+                                      userData ?? const {},
+                                      snapshot.data!.id,
+                                    );
+
+                                    return postCard(post, user);
+                                  } else if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                },
+                              ),
                             ),
                           );
                         },
