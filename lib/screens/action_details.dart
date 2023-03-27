@@ -20,8 +20,6 @@ class ActionDetails extends StatefulWidget {
 }
 
 class _ActionDetailsState extends State<ActionDetails> {
-  Color buttonColor = Colors.green;
-  String buttonText = 'Take Action';
   String actionId = '';
   CollectionReference<Map<String, dynamic>> actions =
       FirebaseFirestore.instance.collection('actions');
@@ -50,29 +48,6 @@ class _ActionDetailsState extends State<ActionDetails> {
     }
   }
 
-  Future<void> updateButton() async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-
-    DocumentSnapshot<Map<String, dynamic>> userSnapshot =
-        await FirebaseFirestore.instance.collection('users').doc(userId).get();
-
-    List<dynamic> actions = userSnapshot.data()!['actions'];
-
-    if (actionId.isNotEmpty && actions.contains(actionId)) {
-      print('Action Taken');
-      setState(() {
-        buttonColor = Colors.grey;
-        buttonText = 'Action Taken';
-      });
-    } else {
-      print('Take Action');
-      setState(() {
-        buttonColor = Colors.green;
-        buttonText = 'Take Action';
-      });
-    }
-  }
-
   Future<void> removeAction() async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
 
@@ -88,9 +63,7 @@ class _ActionDetailsState extends State<ActionDetails> {
   @override
   void initState() {
     super.initState();
-    initPrefs().then((_) {
-      updateButton();
-    });
+    initPrefs();
   }
 
   @override
@@ -151,37 +124,78 @@ class _ActionDetailsState extends State<ActionDetails> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: buttonColor,
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                ),
-                onPressed: () async {
-                  if (buttonColor == Colors.grey) {
-                    await removeAction();
-                  } else {
-                    await addAction();
-                  }
-
-                  // Call updateButton again to update the button color and text
-                  await updateButton();
-                },
-                child: Text(
-                  buttonText,
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+          ButtonWidget(
+            title: widget.title,
+            actionId: actionId,
+            addAction: addAction,
+            removeAction: removeAction,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ButtonWidget extends StatefulWidget {
+  const ButtonWidget({
+    Key? key,
+    required this.title,
+    required this.actionId,
+    required this.addAction,
+    required this.removeAction,
+  }) : super(key: key);
+
+  final String title;
+  final String actionId;
+  final Function() addAction;
+  final Function() removeAction;
+
+  @override
+  _ButtonWidgetState createState() => _ButtonWidgetState();
+}
+
+class _ButtonWidgetState extends State<ButtonWidget> {
+  late bool isActionAdded;
+
+  @override
+  void initState() {
+    super.initState();
+    isActionAdded = (widget.actionId.isNotEmpty);
+
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        isActionAdded = prefs.getBool(widget.title) ?? false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      child: ElevatedButton(
+        onPressed: () async {
+          setState(() {
+            isActionAdded = !isActionAdded;
+          });
+
+          if (isActionAdded) {
+            await widget.addAction();
+          } else {
+            await widget.removeAction();
+          }
+
+          SharedPreferences.getInstance().then((prefs) {
+            prefs.setBool(widget.title, isActionAdded);
+          });
+        },
+        child: Text(
+          isActionAdded ? 'Remove from My Actions' : 'Add to My Actions',
+        ),
+        style: ElevatedButton.styleFrom(
+          foregroundColor: isActionAdded ? Colors.red : Colors.green,
+        ),
       ),
     );
   }

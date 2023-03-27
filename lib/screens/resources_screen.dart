@@ -1,3 +1,4 @@
+import 'package:ecoflow_v3/screens/resources_details.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,45 +6,60 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({Key? key}) : super(key: key);
 
-  Widget actions(
+  Widget resources(BuildContext context,
       {required String title,
       required String description,
       required String imageUrl}) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: Container(
-            width: double.infinity,
-            height: 300,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  imageUrl ?? '',
-                ),
-                fit: BoxFit.cover,
-                opacity: 0.7,
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResourcesDetails(
+              title: title,
+              description: description,
+              imageUrl: imageUrl,
             ),
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  title ?? '',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+          ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Card(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Container(
+              width: double.infinity,
+              height: 300,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    imageUrl ?? ' ',
                   ),
-                  textAlign: TextAlign.center,
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.5), BlendMode.darken),
                 ),
               ),
-            ),
-          )),
+              child: Center(
+                child: Container(
+                  margin: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    title ?? '',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            )),
+      ),
     );
   }
 
@@ -64,11 +80,11 @@ class ResourcesScreen extends StatelessWidget {
             return const Text("Loading");
           }
 
-          return new ListView(
+          return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;
-              return actions(
+              return resources(context,
                   title: data['title'],
                   description: data['description'],
                   imageUrl: data['imageUrl']);

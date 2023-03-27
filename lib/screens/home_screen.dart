@@ -159,92 +159,89 @@ class HomeScreen extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('posts')
-                    .orderBy('timestamp', descending: true)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          final post = Post.fromMap(
-                            snapshot.data!.docs[index].data()
-                                as Map<String, dynamic>,
-                            // id
-                            snapshot.data!.docs[index].id,
-                          );
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('posts')
+                  .orderBy('timestamp', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final post = Post.fromMap(
+                        snapshot.data!.docs[index].data()
+                            as Map<String, dynamic>,
+                        // id
+                        snapshot.data!.docs[index].id,
+                      );
 
-                          return GestureDetector(
-                            onTap: () async {
-                              final userSnapshot = await FirebaseFirestore
-                                  .instance
-                                  .collection('users')
-                                  .doc(post.userId)
-                                  .get();
-                              final user = MyAppUser.User.fromMap(
-                                  userSnapshot.data() as Map<String, dynamic>,
-                                  userSnapshot.id);
-                              Navigator.of(context).pushNamed(
-                                '/postdetail',
-                                arguments: {
-                                  'post': post,
-                                  'user': user,
-                                },
-                              );
+                      return GestureDetector(
+                        onTap: () async {
+                          final userSnapshot = await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(post.userId)
+                              .get();
+                          final user = MyAppUser.User.fromMap(
+                              userSnapshot.data() as Map<String, dynamic>,
+                              userSnapshot.id);
+                          Navigator.of(context).pushNamed(
+                            '/postdetail',
+                            arguments: {
+                              'post': post,
+                              'user': user,
                             },
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: FutureBuilder<
-                                  DocumentSnapshot<Map<String, dynamic>>>(
-                                future: FirebaseFirestore.instance
-                                    .collection('users')
-                                    .doc(post.userId)
-                                    .get(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                          ConnectionState.done &&
-                                      snapshot.hasData &&
-                                      snapshot.data != null) {
-                                    final userData = snapshot.data!.data();
-                                    final user = MyAppUser.User.fromMap(
-                                      userData ?? const {},
-                                      snapshot.data!.id,
-                                    );
-
-                                    return postCard(post, user);
-                                  } else if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  } else {
-                                    return SizedBox();
-                                  }
-                                },
-                              ),
-                            ),
                           );
                         },
-                      ),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          child: FutureBuilder<
+                              DocumentSnapshot<Map<String, dynamic>>>(
+                            future: FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(post.userId)
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                      ConnectionState.done &&
+                                  snapshot.hasData &&
+                                  snapshot.data != null) {
+                                final userData = snapshot.data!.data();
+                                final user = MyAppUser.User.fromMap(
+                                  userData ?? const {},
+                                  snapshot.data!.id,
+                                );
+
+                                return postCard(post, user);
+                              } else if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              } else {
+                                return const Text('Error');
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  return const Text('Error');
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
