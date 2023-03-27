@@ -1,45 +1,66 @@
 import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'action_details.dart';
 
 class ActionScreen extends StatelessWidget {
   const ActionScreen({Key? key}) : super(key: key);
 
-  Widget actions(
+  Widget actions(BuildContext context,
       {required String title,
       required String description,
       required String imageUrl}) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Card(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ActionDetails(
+              title: title,
+              description: description,
+              imageUrl: imageUrl,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: Container(
-            width: double.infinity,
-            height: 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  imageUrl,
-                ),
-                fit: BoxFit.cover,
-                opacity: 0.5,
-              ),
-            ),
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+          child: Hero(
+            tag: title,
+            child: Container(
+              width: double.infinity,
+              height: 100,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    imageUrl,
                   ),
-                  textAlign: TextAlign.center,
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.5),
+                    BlendMode.srcOver,
+                  ),
+                ),
+              ),
+              child: Center(
+                child: Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 
@@ -60,14 +81,16 @@ class ActionScreen extends StatelessWidget {
             return const Text("Loading");
           }
 
-          return new ListView(
+          return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;
               return actions(
-                  title: data['title'],
-                  description: data['description'],
-                  imageUrl: data['imageUrl']);
+                context,
+                title: data['title'],
+                description: data['description'],
+                imageUrl: data['imageUrl'],
+              );
             }).toList(),
           );
         },

@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import '../screens/resources_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
@@ -17,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const ActionScreen(),
+    ActionScreen(),
     const ResourcesScreen(),
     const MetricsScreen(),
     const ProfileScreen(),

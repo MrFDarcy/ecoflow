@@ -117,7 +117,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeScreen'),
+        title: const Text('Home', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.green,
         // show current user icon if user is logged in else show anonymous icon
         actions: [
           if (AuthService().user != null)

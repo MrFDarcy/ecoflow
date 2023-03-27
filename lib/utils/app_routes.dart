@@ -2,6 +2,7 @@ import 'package:ecoflow_v3/screens/login_redirect.dart';
 import 'package:ecoflow_v3/screens/post_detail.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/action_details.dart';
 import '../screens/action_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
@@ -23,7 +24,10 @@ var appRoutes = {
 
   '/postupload': (context) => const PostUploadScreen(),
   '/resource': (context) => const ResourcesScreen(),
+
   '/action': (context) => const ActionScreen(),
+
+  // '/actiondetails': (context) => const ActionDetails(),
   '/metrics': (context) => const MetricsScreen(),
   '/profile': (context) => const ProfileScreen(),
 };
