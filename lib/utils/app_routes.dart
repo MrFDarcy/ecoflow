@@ -11,6 +11,7 @@ import '../screens/onboarding_screen.dart';
 import '../screens/post_upload_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/resources_screen.dart';
+import '../screens/user_actions.dart';
 
 var appRoutes = {
   // '/': (context) => const LoginRedirect(),
@@ -30,4 +31,6 @@ var appRoutes = {
   // '/actiondetails': (context) => const ActionDetails(),
   '/metrics': (context) => const MetricsScreen(),
   '/profile': (context) => const ProfileScreen(),
+
+  '/useractions': (context) => const UserActions(),
 };

@@ -21,14 +21,7 @@ class MetricsScreen extends StatelessWidget {
                   AirQualityCard(),
                 ],
               ),
-              Card(
-                child: Column(
-                  children: [
-                    const Text('Emissions'),
-                    EmissionsChart(),
-                  ],
-                ),
-              ),
+              EmissionsChart(),
             ],
           ),
         ),

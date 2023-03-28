@@ -49,87 +49,95 @@ class _EmissionsChartState extends State<EmissionsChart> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Emissions>>(
-      future: _emissions,
-      builder: (BuildContext context, AsyncSnapshot<List<Emissions>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return Center(
-            child: Text('Error: ${snapshot.error}'),
-          );
-        } else {
-          final emissions = snapshot.data!;
-          final chartData = _createChartData(emissions);
-          return Container(
-            height: 300,
-            child: charts.TimeSeriesChart(
-              animationDuration: const Duration(seconds: 1),
-              chartData,
-              animate: true,
-              behaviors: [
-                charts.ChartTitle(
-                  'Year',
-                  titleStyleSpec: charts.TextStyleSpec(
-                    fontSize: 18,
-                    color: charts.MaterialPalette.black,
-                  ),
-                  behaviorPosition: charts.BehaviorPosition.bottom,
-                  titleOutsideJustification: charts.OutsideJustification.middle,
-                ),
-                charts.ChartTitle(
-                  'CO2 Emissions in PPM',
-                  titleStyleSpec: charts.TextStyleSpec(
-                    fontSize: 18,
-                    color: charts.MaterialPalette.black,
-                  ),
-                  behaviorPosition: charts.BehaviorPosition.start,
-                  titleOutsideJustification: charts.OutsideJustification.middle,
-                ),
-                charts.LinePointHighlighter(
-                  showHorizontalFollowLine:
-                      charts.LinePointHighlighterFollowLineType.nearest,
-                  showVerticalFollowLine:
-                      charts.LinePointHighlighterFollowLineType.nearest,
-                ),
-                charts.SeriesLegend(
-                  position: charts.BehaviorPosition.bottom,
-                  outsideJustification:
-                      charts.OutsideJustification.middleDrawArea,
-                  horizontalFirst: false,
-                  desiredMaxRows: 2,
-                  cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
-                  entryTextStyle: charts.TextStyleSpec(
-                    color: charts.MaterialPalette.black,
-                    fontFamily: 'Georgia',
-                    fontSize: 11,
-                  ),
-                ),
-              ],
-              primaryMeasureAxis: charts.NumericAxisSpec(
-                // add title
+    return Container(
+      height: 350,
+      child: Card(
+        child: FutureBuilder<List<Emissions>>(
+          future: _emissions,
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Emissions>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else {
+              final emissions = snapshot.data!;
+              final chartData = _createChartData(emissions);
+              return Container(
+                height: 300,
+                child: charts.TimeSeriesChart(
+                  animationDuration: const Duration(seconds: 1),
+                  chartData,
+                  animate: true,
+                  behaviors: [
+                    charts.ChartTitle(
+                      'Year',
+                      titleStyleSpec: charts.TextStyleSpec(
+                        fontSize: 18,
+                        color: charts.MaterialPalette.black,
+                      ),
+                      behaviorPosition: charts.BehaviorPosition.bottom,
+                      titleOutsideJustification:
+                          charts.OutsideJustification.middle,
+                    ),
+                    charts.ChartTitle(
+                      'CO2 Emissions in PPM',
+                      titleStyleSpec: charts.TextStyleSpec(
+                        fontSize: 18,
+                        color: charts.MaterialPalette.black,
+                      ),
+                      behaviorPosition: charts.BehaviorPosition.start,
+                      titleOutsideJustification:
+                          charts.OutsideJustification.middle,
+                    ),
+                    charts.LinePointHighlighter(
+                      showHorizontalFollowLine:
+                          charts.LinePointHighlighterFollowLineType.nearest,
+                      showVerticalFollowLine:
+                          charts.LinePointHighlighterFollowLineType.nearest,
+                    ),
+                    charts.SeriesLegend(
+                      position: charts.BehaviorPosition.bottom,
+                      outsideJustification:
+                          charts.OutsideJustification.middleDrawArea,
+                      horizontalFirst: false,
+                      desiredMaxRows: 2,
+                      cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
+                      entryTextStyle: charts.TextStyleSpec(
+                        color: charts.MaterialPalette.black,
+                        fontFamily: 'Georgia',
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                  primaryMeasureAxis: charts.NumericAxisSpec(
+                    // add title
 
-                tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                  desiredTickCount: 5,
-                ),
-              ),
-              domainAxis: charts.DateTimeAxisSpec(
-                renderSpec: charts.SmallTickRendererSpec(
-                  labelStyle: charts.TextStyleSpec(
-                    fontSize: 12,
-                    color: charts.MaterialPalette.black,
+                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
+                      desiredTickCount: 5,
+                    ),
+                  ),
+                  domainAxis: charts.DateTimeAxisSpec(
+                    renderSpec: charts.SmallTickRendererSpec(
+                      labelStyle: charts.TextStyleSpec(
+                        fontSize: 12,
+                        color: charts.MaterialPalette.black,
+                      ),
+                    ),
+                    tickProviderSpec: charts.DayTickProviderSpec(
+                      increments: [365 * 6],
+                    ),
                   ),
                 ),
-                tickProviderSpec: charts.DayTickProviderSpec(
-                  increments: [365 * 6],
-                ),
-              ),
-            ),
-          );
-        }
-      },
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

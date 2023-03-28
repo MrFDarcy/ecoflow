@@ -7,10 +7,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({Key? key}) : super(key: key);
 
-  Widget resources(BuildContext context,
-      {required String title,
-      required String description,
-      required String imageUrl}) {
+  Widget resources(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String imageUrl,
+    int? serial,
+  }) {
     return GestureDetector(
       onTap: () {
         if (FirebaseAuth.instance.currentUser!.isAnonymous == true) {
@@ -36,6 +39,7 @@ class ResourcesScreen extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Card(
+            color: Colors.black,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Container(
               width: double.infinity,
@@ -80,7 +84,10 @@ class ResourcesScreen extends StatelessWidget {
         title: const Text('Action Screen'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('resources').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('resources')
+            .orderBy('serial')
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');
