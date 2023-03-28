@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import "package:ecoflow_v3/models/user.dart" as MyAppUser;
-import 'package:connectivity/connectivity.dart';
 
 import '../models/post.dart';
 import '../services/authentication_service.dart';
@@ -117,8 +115,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.green,
+        title: const Text('Home'),
+
         // show current user icon if user is logged in else show anonymous icon
         actions: [
           if (AuthService().user != null)
@@ -157,7 +155,7 @@ class HomeScreen extends StatelessWidget {
             Navigator.of(context).pushNamed('/postupload');
           }
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add_a_photo),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -223,7 +221,11 @@ class HomeScreen extends StatelessWidget {
                               } else if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return Center(
-                                    child: CircularProgressIndicator());
+                                    child: Container(
+                                        height: 500,
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        )));
                               } else {
                                 return const Text('Error');
                               }

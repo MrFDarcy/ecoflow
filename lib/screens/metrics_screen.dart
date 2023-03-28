@@ -16,13 +16,10 @@ class MetricsScreen extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Card(
-                child: Column(
-                  children: [
-                    const Text('Air Quality'),
-                    AirQualityCard(),
-                  ],
-                ),
+              Column(
+                children: [
+                  AirQualityCard(),
+                ],
               ),
               Card(
                 child: Column(

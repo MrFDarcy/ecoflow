@@ -30,7 +30,7 @@ class ActionScreen extends StatelessWidget {
             tag: title,
             child: Container(
               width: double.infinity,
-              height: 100,
+              height: 175,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
@@ -45,7 +45,7 @@ class ActionScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.only(left: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     title,
                     style: TextStyle(

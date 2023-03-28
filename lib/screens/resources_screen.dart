@@ -1,4 +1,5 @@
 import 'package:ecoflow_v3/screens/resources_details.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,6 +13,15 @@ class ResourcesScreen extends StatelessWidget {
       required String imageUrl}) {
     return GestureDetector(
       onTap: () {
+        if (FirebaseAuth.instance.currentUser!.isAnonymous == true) {
+          // show a snackbar
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Login to earn points!'),
+              duration: Duration(seconds: 4),
+            ),
+          );
+        }
         Navigator.push(
           context,
           MaterialPageRoute(

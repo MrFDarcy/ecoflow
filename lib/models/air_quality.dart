@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class AirQuality {
   final String? city;
-  final String? airQualityIndex;
+  final int? airQualityIndex;
   final String? mainPollutant;
   final String? dateAndTime;
 
@@ -16,7 +16,7 @@ class AirQuality {
 
   AirQuality.fromJSON(Map<String, dynamic> json)
       : city = json['city']['name'],
-        airQualityIndex = json['aqi'].toString(),
+        airQualityIndex = json['aqi'],
         mainPollutant = json['dominentpol'],
         dateAndTime = json['time']['s'];
 

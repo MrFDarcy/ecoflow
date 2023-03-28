@@ -78,7 +78,7 @@ class PostDetailsScreen extends StatelessWidget {
                             body: Container(
                               child: PhotoView(
                                 minScale: PhotoViewComputedScale.contained * 1,
-                                maxScale: PhotoViewComputedScale.contained * 1,
+                                // maxScale: PhotoViewComputedScale.contained * 1,
                                 imageProvider: NetworkImage(post.imageUrl),
                               ),
                             ),

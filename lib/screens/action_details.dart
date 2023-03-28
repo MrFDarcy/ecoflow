@@ -57,7 +57,7 @@ class _ActionDetailsState extends State<ActionDetails> {
   }
 
   String convertNewLine(String content) {
-    return content.replaceAll(r'\n', '\n');
+    return content.replaceAll(r'\n\n', '\n');
   }
 
   @override
@@ -106,6 +106,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(
@@ -124,12 +125,28 @@ class _ActionDetailsState extends State<ActionDetails> {
               ),
             ),
           ),
-          ButtonWidget(
-            title: widget.title,
-            actionId: actionId,
-            addAction: addAction,
-            removeAction: removeAction,
-          ),
+// do not show button if user is anonymous else show text to log in
+          if (FirebaseAuth.instance.currentUser?.isAnonymous == false)
+            ButtonWidget(
+              title: widget.title,
+              actionId: actionId,
+              addAction: addAction,
+              removeAction: removeAction,
+            )
+          else
+            Container(
+              padding: EdgeInsets.all(16),
+              child: const Center(
+                child: Text(
+                  'Please log in to add actions',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

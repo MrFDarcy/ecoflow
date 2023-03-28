@@ -23,9 +23,11 @@ class _ResourcesDetailsState extends State<ResourcesDetails> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5)).then((value) {
-      _addResourceToUser();
-    });
+    if (FirebaseAuth.instance.currentUser!.isAnonymous == false) {
+      Future.delayed(Duration(seconds: 30)).then((value) {
+        _addResourceToUser();
+      });
+    }
   }
 
   String convertNewLine(String content) {

@@ -80,13 +80,32 @@ class _EmissionsChartState extends State<EmissionsChart> {
                   titleOutsideJustification: charts.OutsideJustification.middle,
                 ),
                 charts.ChartTitle(
-                  'Emissions',
+                  'CO2 Emissions in PPM',
                   titleStyleSpec: charts.TextStyleSpec(
                     fontSize: 18,
                     color: charts.MaterialPalette.black,
                   ),
                   behaviorPosition: charts.BehaviorPosition.start,
                   titleOutsideJustification: charts.OutsideJustification.middle,
+                ),
+                charts.LinePointHighlighter(
+                  showHorizontalFollowLine:
+                      charts.LinePointHighlighterFollowLineType.nearest,
+                  showVerticalFollowLine:
+                      charts.LinePointHighlighterFollowLineType.nearest,
+                ),
+                charts.SeriesLegend(
+                  position: charts.BehaviorPosition.bottom,
+                  outsideJustification:
+                      charts.OutsideJustification.middleDrawArea,
+                  horizontalFirst: false,
+                  desiredMaxRows: 2,
+                  cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
+                  entryTextStyle: charts.TextStyleSpec(
+                    color: charts.MaterialPalette.black,
+                    fontFamily: 'Georgia',
+                    fontSize: 11,
+                  ),
                 ),
               ],
               primaryMeasureAxis: charts.NumericAxisSpec(
