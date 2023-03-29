@@ -49,11 +49,13 @@ class _ActionDetailsState extends State<ActionDetails> {
   }
 
   Future<void> removeAction() async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
+    if (actionId.isNotEmpty) {
+      String userId = FirebaseAuth.instance.currentUser!.uid;
 
-    await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'actions': FieldValue.arrayRemove([actionId])
-    });
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        'actions': FieldValue.arrayRemove([actionId])
+      });
+    }
   }
 
   String convertNewLine(String content) {
@@ -177,8 +179,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
   @override
   void initState() {
     super.initState();
-    isActionAdded = (widget.actionId.isNotEmpty);
-
+    isActionAdded = widget.actionId.isNotEmpty;
     SharedPreferences.getInstance().then((prefs) {
       setState(() {
         isActionAdded = prefs.getBool(widget.title) ?? false;
@@ -203,9 +204,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             await widget.removeAction();
           }
 
-          SharedPreferences.getInstance().then((prefs) {
-            prefs.setBool(widget.title, isActionAdded);
-          });
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setBool(widget.title, isActionAdded);
         },
         child: Text(
           isActionAdded ? 'Remove from My Actions' : 'Add to My Actions',

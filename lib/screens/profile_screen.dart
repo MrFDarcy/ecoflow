@@ -46,8 +46,8 @@ class ProfileScreen extends StatelessWidget {
 
   Widget loginDialogue(context) {
     return AlertDialog(
-      title: const Text('Login'),
-      content: const Text('Do you want to login?'),
+      title: const Text('Log Out'),
+      content: const Text('Do you want to log out?'),
       actions: [
         TextButton(
           onPressed: () {
@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
             ).pop();
             AuthService.signOut();
           },
-          child: const Text('Login'),
+          child: const Text('Log Out'),
         ),
       ],
     );
@@ -146,7 +146,12 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/userbadges',
+                  );
+                },
                 child: Container(
                   height: 200,
                   width: 200,
@@ -177,7 +182,40 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
+
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.red,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 15),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return loginDialogue(context);
+                  },
+                );
+              },
+              child: const Text(
+                'Logout',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          // Logout button
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/action_details.dart';
 import '../screens/action_screen.dart';
+import '../screens/user_badges.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/metrics_screen.dart';
@@ -31,6 +32,7 @@ var appRoutes = {
   // '/actiondetails': (context) => const ActionDetails(),
   '/metrics': (context) => const MetricsScreen(),
   '/profile': (context) => const ProfileScreen(),
+  '/userbadges': (context) => const UserBadges(),
 
   '/useractions': (context) => const UserActions(),
 };

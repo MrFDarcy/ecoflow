@@ -4,39 +4,43 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
-    super.key,
+    Key? key,
     required this.color,
     required this.text,
     required this.icon,
     required this.loginMethod,
-  });
+  }) : super(key: key);
 
   final Color color;
   final String text;
   final IconData icon;
-  final Function loginMethod;
+  final Function() loginMethod;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 10),
-        child: ElevatedButton.icon(
-          icon: Icon(
-            icon,
-            color: Colors.white,
-            size: 20,
+      margin: EdgeInsets.only(bottom: 10),
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        icon: Icon(
+          icon,
+          color: Colors.white,
+          size: 20,
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          textStyle: TextStyle(fontSize: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          style: TextButton.styleFrom(
-            backgroundColor: color,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          ),
-          label: Text(
-            text,
-            style: TextStyle(color: Colors.white, fontSize: 15),
-          ),
-          onPressed: () {
-            loginMethod();
-          },
-        ));
+        ),
+        label: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
+        onPressed: loginMethod,
+      ),
+    );
   }
 }

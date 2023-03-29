@@ -34,7 +34,11 @@ class UserActions extends StatelessWidget {
                       .toList()), // Convert dynamic list to String list
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
                 }
 
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -164,7 +168,8 @@ class UserActions extends StatelessWidget {
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child:
+                  Container(height: 20, width: 20, child: Text('Loading...')),
             );
           }
         },
