@@ -40,7 +40,13 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: isAnonymous
           ? anonymousUserDetails(context)
-          : userDetails(user, points, context),
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  userDetails(user, points, context),
+                ],
+              ),
+            ),
     );
   }
 
@@ -106,25 +112,25 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/useractions',
-                  );
-                },
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  child: Card(
-                      // set the color of the Card
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/useractions',
+                    );
+                  },
+                  child: Container(
+                    height: 200,
+                    child: Card(
                       color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
+                        children: [
                           SizedBox(height: 20),
                           FaIcon(
                             size: 60,
@@ -142,25 +148,26 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/userbadges',
-                  );
-                },
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  child: Card(
-                      // set the color of the Card
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/userbadges',
+                    );
+                  },
+                  child: Container(
+                    height: 200,
+                    child: Card(
                       color: Colors.teal,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
+                        children: [
                           SizedBox(height: 20),
                           FaIcon(
                             size: 60,
@@ -178,7 +185,9 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
