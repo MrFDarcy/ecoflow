@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileScreen'),
+        title: const Text('Profile'),
       ),
       body: isAnonymous
           ? anonymousUserDetails(context)
@@ -87,12 +87,12 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text(
-            user.email!,
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          ),
+          // Text(
+          //   user.email!,
+          //   style: const TextStyle(
+          //     fontSize: 15,
+          //   ),
+          // ),
           const SizedBox(height: 70),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -9,7 +9,7 @@ class MetricsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MetricsScreen'),
+        title: const Text('Metrics'),
       ),
       body: SingleChildScrollView(
         child: Container(

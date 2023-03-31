@@ -14,18 +14,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   List<OnboardingPage> _pages = [
     OnboardingPage(
       title: 'Welcome to Ecoflow',
-      subtitle: 'Discover how to live sustainably',
+      subtitle: 'EcoFlow: A Social Platform for Positive Environmental Impact.',
       imageAsset: 'assets/images/ecoflow_logo.png',
     ),
     OnboardingPage(
-      title: 'Reduce your carbon footprint',
-      subtitle: 'Learn how to lower your carbon emissions',
+      title: 'Upload Posts',
+      subtitle: 'Share your positive impact on the environment with the world.',
+      imageAsset: 'assets/images/onb1.png',
+    ),
+    OnboardingPage(
+      title: 'Take Actions',
+      subtitle: 'Take actions to protect the environment and preserve nature.',
       imageAsset: 'assets/images/onb2.png',
     ),
     OnboardingPage(
-      title: 'Track your progress',
-      subtitle: 'Monitor your impact on the environment',
+      title: 'Learning Resources',
+      subtitle:
+          'Learn more about environmental issues and how to make a positive impact.',
       imageAsset: 'assets/images/onb3.png',
+    ),
+    OnboardingPage(
+      title: 'Metrics and Tracking',
+      subtitle: 'Track and measure your positive impact on the environment.',
+      imageAsset: 'assets/images/onb4.png',
+    ),
+    OnboardingPage(
+      title: 'Earn Rewards',
+      subtitle: 'Earn rewards for your positive environmental impact.',
+      imageAsset: 'assets/images/onb5.png',
     ),
   ];
 
@@ -61,6 +77,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: const Text('SKIP'),
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                      ),
                       onPressed: () {
                         if (_currentPageIndex == _pages.length - 1) {
                           Navigator.of(context)
@@ -108,7 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        color: isActive ? Colors.blue : Colors.grey,
+        color: isActive ? Colors.green : Colors.grey,
       ),
     );
   }
@@ -146,21 +166,29 @@ class OnboardingPage extends StatelessWidget {
             width: double.infinity,
             height: 400.0,
           ),
-          const SizedBox(height: 32.0),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+          const SizedBox(
+            height: 32.0,
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 16.0),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 16.0,
-              color: Colors.grey,
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey,
+              ),
             ),
           ),
         ],

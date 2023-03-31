@@ -10,15 +10,24 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xff0c7e6b),
+              Color(0xff8fc95d),
+            ],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/ecoflow_logo.png',
+              'assets/images/logo_clean.png',
               height: 200,
             ),
             SizedBox(height: 24),
@@ -27,12 +36,14 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
             SizedBox(height: 48),
             LoginButton(
-              color: Colors.green.shade800,
+              color: Colors.white,
+              outline: Colors.white,
+              textColour: Colors.black,
               text: 'Continue with Google',
               icon: FontAwesomeIcons.google,
               loginMethod: () {
@@ -41,8 +52,10 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 50),
             LoginButton(
-              color: Colors.green.shade300,
-              text: 'Continue as Guest',
+              textColour: Colors.white,
+              color: Colors.transparent,
+              outline: Colors.white,
+              text: 'Continue without Signing In',
               icon: FontAwesomeIcons.userSecret,
               loginMethod: () {
                 AuthService.anonLogin();

@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "39751371043-0u50d14fre27dh5465bgvllu45aun7ng.apps.googleusercontent.com",
+          "client_id": "39751371043-03r3fun40telijtaufdu1rjv02ge26l8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecoflow.app.ecoflow_v3",
+            "certificate_hash": "b234ad0b06339188eea53b2657fe0a93890be474"
+          }
+        },
+        {
+          "client_id": "39751371043-7qag5biba6agveoi26ebvo3g3jeqemb6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

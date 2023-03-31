@@ -10,7 +10,7 @@ class ActionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Action Screen'),
+        title: const Text('Actions'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('actions').snapshots(),

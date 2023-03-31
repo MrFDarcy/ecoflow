@@ -9,12 +9,16 @@ class LoginButton extends StatelessWidget {
     required this.text,
     required this.icon,
     required this.loginMethod,
+    required this.outline,
+    required this.textColour,
   }) : super(key: key);
 
   final Color color;
   final String text;
   final IconData icon;
   final Function() loginMethod;
+  final Color outline;
+  final Color textColour;
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +28,23 @@ class LoginButton extends StatelessWidget {
       child: ElevatedButton.icon(
         icon: Icon(
           icon,
-          color: Colors.white,
+          color: textColour,
           size: 20,
         ),
         style: ElevatedButton.styleFrom(
+          // set outline to border color
+
           backgroundColor: color,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           textStyle: TextStyle(fontSize: 20),
           shape: RoundedRectangleBorder(
+            side: BorderSide(color: outline, width: 2),
             borderRadius: BorderRadius.circular(20),
           ),
         ),
         label: Text(
           text,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: textColour),
         ),
         onPressed: loginMethod,
       ),

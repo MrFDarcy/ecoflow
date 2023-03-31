@@ -36,7 +36,7 @@ class UserActions extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container(
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: Text('You have no actions yet.'),
                     ),
                   );
                 }
