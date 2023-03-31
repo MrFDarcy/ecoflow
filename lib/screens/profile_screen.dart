@@ -221,30 +221,48 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget anonymousUserDetails(context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'This action requires authentication. Please log in with google',
-            style: TextStyle(
-              fontSize: 20,
+  Widget anonymousUserDetails(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Anonymous logo
+            const FaIcon(
+              FontAwesomeIcons.userSecret,
+              size: 100,
             ),
-            textAlign: TextAlign.center,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return loginDialogue(context);
-                },
-              );
-            },
-            child: const Text('Login'),
-          ),
-        ],
+            const SizedBox(height: 20),
+            Text(
+              'You are not logged in',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'To access this feature, please log in.',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return loginDialogue(context);
+                  },
+                );
+              },
+              child: const Text('Log In'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -25,7 +25,7 @@ class LoginRedirect extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasData) {
-            return BottomNavBar();
+            return const BottomNavBar();
           } else {
             return const LoginScreen();
           }

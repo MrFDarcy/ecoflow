@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'action_details.dart';
+
 import 'package:ecoflow_v3/widgets/action_card.dart';
 
 class ActionScreen extends StatelessWidget {

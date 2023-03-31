@@ -10,39 +10,47 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('LoginScreen'),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/ecoflow_logo.png',
+              height: 200,
+            ),
+            SizedBox(height: 24),
+            Text(
+              'Welcome to Ecoflow!',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
+            SizedBox(height: 48),
+            LoginButton(
+              color: Colors.green.shade800,
+              text: 'Continue with Google',
+              icon: FontAwesomeIcons.google,
+              loginMethod: () {
+                AuthService.googleLogin();
+              },
+            ),
+            SizedBox(height: 50),
+            LoginButton(
+              color: Colors.green.shade300,
+              text: 'Continue as Guest',
+              icon: FontAwesomeIcons.userSecret,
+              loginMethod: () {
+                AuthService.anonLogin();
+              },
+            ),
+          ],
         ),
-        body: Container(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const FlutterLogo(
-                  size: 150,
-                ),
-                Flexible(
-                  child: LoginButton(
-                    color: Colors.red,
-                    text: 'Login with Google',
-                    icon: FontAwesomeIcons.google,
-                    loginMethod: () {
-                      AuthService.googleLogin();
-                    },
-                  ),
-                ),
-                Flexible(
-                  child: LoginButton(
-                    color: Colors.black,
-                    text: 'Login as Guest',
-                    icon: FontAwesomeIcons.userSecret,
-                    loginMethod: () {
-                      AuthService.anonLogin();
-                    },
-                  ),
-                ),
-              ],
-            )));
+      ),
+    );
   }
 }

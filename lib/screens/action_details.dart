@@ -34,7 +34,7 @@ class _ActionDetailsState extends State<ActionDetails> {
     QuerySnapshot snapshot =
         await actions.where('title', isEqualTo: widget.title).get();
 
-    if (snapshot.docs.length > 0) {
+    if (snapshot.docs.isNotEmpty) {
       setState(() {
         actionId = snapshot.docs[0].id;
       });
@@ -87,7 +87,7 @@ class _ActionDetailsState extends State<ActionDetails> {
                       height: 400,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20),
                         ),
@@ -207,11 +207,11 @@ class _ButtonWidgetState extends State<ButtonWidget> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setBool(widget.title, isActionAdded);
         },
-        child: Text(
-          isActionAdded ? 'Remove from My Actions' : 'Add to My Actions',
-        ),
         style: ElevatedButton.styleFrom(
           foregroundColor: isActionAdded ? Colors.red : Colors.green,
+        ),
+        child: Text(
+          isActionAdded ? 'Remove from My Actions' : 'Add to My Actions',
         ),
       ),
     );
