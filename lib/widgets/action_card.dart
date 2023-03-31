@@ -1,4 +1,4 @@
-import 'package:ecoflow_v3/screens/action_details.dart';
+import 'package:Ecoflow/screens/action_details.dart';
 import 'package:flutter/material.dart';
 
 class ActionCard extends StatelessWidget {

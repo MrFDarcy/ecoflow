@@ -1,6 +1,6 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:ecoflow_v3/screens/onb_redirect.dart';
-import 'package:ecoflow_v3/utils/app_routes.dart';
+import 'package:Ecoflow/screens/onb_redirect.dart';
+import 'package:Ecoflow/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';

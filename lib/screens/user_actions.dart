@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecoflow_v3/widgets/action_card.dart';
-import 'package:ecoflow_v3/services/points.dart';
+import 'package:Ecoflow/widgets/action_card.dart';
+import 'package:Ecoflow/services/points.dart';
 
 class UserActions extends StatelessWidget {
   const UserActions({Key? key}) : super(key: key);

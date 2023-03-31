@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecoflow_v3/models/badges.dart';
+import 'package:Ecoflow/models/badges.dart';
 import '../services/points.dart';
 
 class UserBadges extends StatefulWidget {

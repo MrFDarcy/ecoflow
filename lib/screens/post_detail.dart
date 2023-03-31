@@ -4,7 +4,7 @@ import '../models/post.dart';
 
 import "package:photo_view/photo_view.dart";
 
-import "package:ecoflow_v3/models/user.dart";
+import "package:Ecoflow/models/user.dart";
 
 class PostDetailsScreen extends StatelessWidget {
   const PostDetailsScreen({super.key});

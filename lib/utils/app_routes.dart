@@ -1,5 +1,5 @@
-import 'package:ecoflow_v3/screens/login_redirect.dart';
-import 'package:ecoflow_v3/screens/post_detail.dart';
+import 'package:Ecoflow/screens/login_redirect.dart';
+import 'package:Ecoflow/screens/post_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/action_details.dart';
@@ -22,7 +22,7 @@ var appRoutes = {
   '/loginredirect': (context) => const LoginRedirect(),
   '/home': (context) => const HomeScreen(),
 
-  '/postdetail': (context) => PostDetailsScreen(),
+  '/postdetail': (context) => const PostDetailsScreen(),
 
   '/postupload': (context) => const PostUploadScreen(),
   '/resource': (context) => const ResourcesScreen(),

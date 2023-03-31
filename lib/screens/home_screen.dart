@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import "package:ecoflow_v3/models/user.dart" as MyAppUser;
+import "package:Ecoflow/models/user.dart" as MyAppUser;
 
 import '../models/post.dart';
 import '../services/authentication_service.dart';

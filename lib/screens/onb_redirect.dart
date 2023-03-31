@@ -1,5 +1,5 @@
-import 'package:ecoflow_v3/screens/onboarding_screen.dart';
-import 'package:ecoflow_v3/services/authentication_service.dart';
+import 'package:Ecoflow/screens/onboarding_screen.dart';
+import 'package:Ecoflow/services/authentication_service.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/navbar_widget.dart';

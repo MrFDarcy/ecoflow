@@ -1,7 +1,7 @@
-import 'package:ecoflow_v3/screens/action_screen.dart';
-import 'package:ecoflow_v3/screens/home_screen.dart';
-import 'package:ecoflow_v3/screens/metrics_screen.dart';
-import 'package:ecoflow_v3/screens/profile_screen.dart';
+import 'package:Ecoflow/screens/action_screen.dart';
+import 'package:Ecoflow/screens/home_screen.dart';
+import 'package:Ecoflow/screens/metrics_screen.dart';
+import 'package:Ecoflow/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/resources_screen.dart';

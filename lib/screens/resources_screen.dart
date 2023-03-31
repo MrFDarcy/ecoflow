@@ -1,4 +1,4 @@
-import 'package:ecoflow_v3/screens/resources_details.dart';
+import 'package:Ecoflow/screens/resources_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
-import 'package:ecoflow_v3/widgets/airQualityCard.dart';
-import 'package:ecoflow_v3/widgets/emission_chart.dart';
+import 'package:Ecoflow/widgets/airQualityCard.dart';
+import 'package:Ecoflow/widgets/emission_chart.dart';
 import 'package:flutter/material.dart';
 
 class MetricsScreen extends StatelessWidget {
