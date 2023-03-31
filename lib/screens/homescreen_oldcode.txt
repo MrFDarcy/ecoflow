@@ -1,8 +1,0 @@
-Remaining work:
- - Add logo to HomeScreen
- - Label each screen correctly
- - Change the UI design of some of the widgets
- - Change floating action button to add Text
-  - Recreate Login Screen
-  - clean the code
-  - clean the database

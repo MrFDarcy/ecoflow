@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -23,7 +21,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       width: double.infinity,
       child: ElevatedButton.icon(
         icon: Icon(
@@ -35,8 +33,8 @@ class LoginButton extends StatelessWidget {
           // set outline to border color
 
           backgroundColor: color,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          textStyle: TextStyle(fontSize: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          textStyle: const TextStyle(fontSize: 20),
           shape: RoundedRectangleBorder(
             side: BorderSide(color: outline, width: 2),
             borderRadius: BorderRadius.circular(20),

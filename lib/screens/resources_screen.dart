@@ -19,7 +19,7 @@ class ResourcesScreen extends StatelessWidget {
         if (FirebaseAuth.instance.currentUser!.isAnonymous == true) {
           // show a snackbar
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Login to earn points!'),
               duration: Duration(seconds: 4),
             ),
@@ -37,7 +37,7 @@ class ResourcesScreen extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Card(
             color: Colors.black,
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -56,14 +56,14 @@ class ResourcesScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.only(left: 10),
-                  padding: EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     title ?? '',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

@@ -31,7 +31,7 @@ class ActionCard extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Card(
           color: Colors.black,
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -52,10 +52,10 @@ class ActionCard extends StatelessWidget {
             ),
             child: Center(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

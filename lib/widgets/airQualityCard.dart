@@ -46,16 +46,17 @@ class _AirQualityCardState extends State<AirQualityCard> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Location Permission Required'),
-          content: Text('Please grant permission to access your location'),
+          title: const Text('Location Permission Required'),
+          content:
+              const Text('Please grant permission to access your location'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () => openAppSettings(),
-              child: Text('Open Settings'),
+              child: const Text('Open Settings'),
             ),
           ],
         );
@@ -69,15 +70,15 @@ class _AirQualityCardState extends State<AirQualityCard> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text("Location Permission"),
-          content: Text("We need your location to show air quality data"),
+          title: const Text("Location Permission"),
+          content: const Text("We need your location to show air quality data"),
           actions: [
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () => Navigator.pop(context),
             ),
             TextButton(
-              child: Text("Allow"),
+              child: const Text("Allow"),
               onPressed: () => Navigator.pop(context, true),
             ),
           ],
@@ -127,7 +128,7 @@ class _AirQualityCardState extends State<AirQualityCard> {
               return Center(
                   child: Container(
                 height: 300,
-                child: Center(child: CircularProgressIndicator()),
+                child: const Center(child: CircularProgressIndicator()),
               ));
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
@@ -137,38 +138,38 @@ class _AirQualityCardState extends State<AirQualityCard> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Air Quality Index:',
                       style: TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       ' ${airQuality.airQualityIndex}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 70,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
 
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       '$_remarks',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       'Main Pollutant is ${airQuality.mainPollutant}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
+                    const Text(
                       'Time Recorded : ',
                       style: TextStyle(
                         fontSize: 15,
@@ -176,7 +177,7 @@ class _AirQualityCardState extends State<AirQualityCard> {
                     ),
                     Text(
                       ' ${airQuality.dateAndTime}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),

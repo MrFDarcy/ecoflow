@@ -76,7 +76,7 @@ class _EmissionsChartState extends State<EmissionsChart> {
                   behaviors: [
                     charts.ChartTitle(
                       'Year',
-                      titleStyleSpec: charts.TextStyleSpec(
+                      titleStyleSpec: const charts.TextStyleSpec(
                         fontSize: 18,
                         color: charts.MaterialPalette.black,
                       ),
@@ -86,7 +86,7 @@ class _EmissionsChartState extends State<EmissionsChart> {
                     ),
                     charts.ChartTitle(
                       'CO2 Emissions in PPM',
-                      titleStyleSpec: charts.TextStyleSpec(
+                      titleStyleSpec: const charts.TextStyleSpec(
                         fontSize: 18,
                         color: charts.MaterialPalette.black,
                       ),
@@ -106,22 +106,23 @@ class _EmissionsChartState extends State<EmissionsChart> {
                           charts.OutsideJustification.middleDrawArea,
                       horizontalFirst: false,
                       desiredMaxRows: 2,
-                      cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
-                      entryTextStyle: charts.TextStyleSpec(
+                      cellPadding:
+                          const EdgeInsets.only(right: 4.0, bottom: 4.0),
+                      entryTextStyle: const charts.TextStyleSpec(
                         color: charts.MaterialPalette.black,
                         fontFamily: 'Georgia',
                         fontSize: 11,
                       ),
                     ),
                   ],
-                  primaryMeasureAxis: charts.NumericAxisSpec(
+                  primaryMeasureAxis: const charts.NumericAxisSpec(
                     // add title
 
                     tickProviderSpec: charts.BasicNumericTickProviderSpec(
                       desiredTickCount: 5,
                     ),
                   ),
-                  domainAxis: charts.DateTimeAxisSpec(
+                  domainAxis: const charts.DateTimeAxisSpec(
                     renderSpec: charts.SmallTickRendererSpec(
                       labelStyle: charts.TextStyleSpec(
                         fontSize: 12,

@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 10),
+                    margin: const EdgeInsets.only(left: 10),
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(
                         user.userPhoto ?? '',
@@ -72,10 +72,10 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 10),
+                    margin: const EdgeInsets.only(left: 10),
                     child: Text(
                       user.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -84,24 +84,24 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   post.caption,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               )
             ],
@@ -170,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                 if (snapshot.hasData) {
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       final post = Post.fromMap(
@@ -198,7 +198,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
                           child: FutureBuilder<
                               DocumentSnapshot<Map<String, dynamic>>>(
@@ -223,7 +223,7 @@ class HomeScreen extends StatelessWidget {
                                 return Center(
                                     child: Container(
                                         height: 500,
-                                        child: Center(
+                                        child: const Center(
                                           child: CircularProgressIndicator(),
                                         )));
                               } else {

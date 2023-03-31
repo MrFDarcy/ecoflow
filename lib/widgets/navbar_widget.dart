@@ -15,12 +15,12 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   List<Widget> pages = [
     const HomeScreen(),
-    ActionScreen(),
-    ResourcesScreen(),
+    const ActionScreen(),
+    const ResourcesScreen(),
     const MetricsScreen(),
     const ProfileScreen(),
   ];
@@ -51,7 +51,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: _onItemTapped,
-        destinations: [
+        destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home),
             label: 'Home',

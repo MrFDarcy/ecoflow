@@ -35,7 +35,7 @@ class UserActions extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Container(
-                    child: Center(
+                    child: const Center(
                       child: Text('You have no actions yet.'),
                     ),
                   );
@@ -88,8 +88,8 @@ class UserActions extends StatelessWidget {
 
   Widget progress() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      decoration: const BoxDecoration(
         color: Colors.green, // set appbar color to green
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
@@ -110,7 +110,7 @@ class UserActions extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Your Progress',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class UserActions extends StatelessWidget {
                     color: Colors.white, // set text color to white
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Stack(
@@ -153,12 +153,12 @@ class UserActions extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   '${1500 - snapshot.data!} points to go',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: Colors.white, // set text color to white
@@ -168,8 +168,8 @@ class UserActions extends StatelessWidget {
             );
           } else {
             return Center(
-              child:
-                  Container(height: 20, width: 20, child: Text('Loading...')),
+              child: Container(
+                  height: 20, width: 20, child: const Text('Loading...')),
             );
           }
         },

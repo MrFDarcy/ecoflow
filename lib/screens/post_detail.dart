@@ -7,7 +7,7 @@ import "package:photo_view/photo_view.dart";
 import "package:ecoflow_v3/models/user.dart";
 
 class PostDetailsScreen extends StatelessWidget {
-  PostDetailsScreen({super.key});
+  const PostDetailsScreen({super.key});
 
   static const routeName = '/postdetail';
 
@@ -31,7 +31,7 @@ class PostDetailsScreen extends StatelessWidget {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 10),
+          margin: const EdgeInsets.only(left: 10),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
               user.userPhoto,
@@ -39,10 +39,10 @@ class PostDetailsScreen extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 10),
+          margin: const EdgeInsets.only(left: 10),
           child: Text(
             user.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -64,7 +64,7 @@ class PostDetailsScreen extends StatelessWidget {
           title: const Text('PostDetailsScreen'),
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -73,7 +73,7 @@ class PostDetailsScreen extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Scaffold(
                             appBar: AppBar(
-                              title: Text("Image"),
+                              title: const Text("Image"),
                             ),
                             body: Container(
                               child: PhotoView(
@@ -86,38 +86,38 @@ class PostDetailsScreen extends StatelessWidget {
                 },
                 child: imageContainer(post),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               userDetails(user),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   post.caption,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   post.description != null
                       ? post.description.toString()
                       : "This post has no description",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
             ]),

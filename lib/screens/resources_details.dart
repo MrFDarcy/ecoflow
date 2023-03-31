@@ -24,7 +24,7 @@ class _ResourcesDetailsState extends State<ResourcesDetails> {
   void initState() {
     super.initState();
     if (FirebaseAuth.instance.currentUser!.isAnonymous == false) {
-      Future.delayed(Duration(seconds: 30)).then((value) {
+      Future.delayed(const Duration(seconds: 20)).then((value) {
         _addResourceToUser();
       });
     }
@@ -62,7 +62,7 @@ class _ResourcesDetailsState extends State<ResourcesDetails> {
       });
       // Show snackbar to notify the user
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('You have read the resource'),
         ),
       );
@@ -89,19 +89,19 @@ class _ResourcesDetailsState extends State<ResourcesDetails> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Text(
                 widget.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Text(
                 convertNewLine(widget.description),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),

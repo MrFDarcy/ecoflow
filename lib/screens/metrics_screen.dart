@@ -13,15 +13,15 @@ class MetricsScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Column(
             children: [
               Column(
                 children: [
-                  AirQualityCard(),
+                  const AirQualityCard(),
                 ],
               ),
-              EmissionsChart(),
+              const EmissionsChart(),
             ],
           ),
         ),

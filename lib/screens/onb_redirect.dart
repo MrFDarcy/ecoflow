@@ -1,4 +1,3 @@
-import 'package:ecoflow_v3/screens/login_screen.dart';
 import 'package:ecoflow_v3/screens/onboarding_screen.dart';
 import 'package:ecoflow_v3/services/authentication_service.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class OnboardingRedirect extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasData) {
-            return BottomNavBar();
+            return const BottomNavBar();
           } else {
             return const OnboardingScreen();
           }

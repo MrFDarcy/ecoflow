@@ -11,36 +11,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPageIndex = 0;
   final PageController _pageController = PageController();
 
-  List<OnboardingPage> _pages = [
-    OnboardingPage(
+  final List<OnboardingPage> _pages = [
+    const OnboardingPage(
       title: 'Welcome to Ecoflow',
-      subtitle: 'EcoFlow: A Social Platform for Positive Environmental Impact.',
+      subtitle: 'EcoFlow: A Social Platform for a Sustainable Future.',
       imageAsset: 'assets/images/ecoflow_logo.png',
     ),
-    OnboardingPage(
+    const OnboardingPage(
       title: 'Upload Posts',
-      subtitle: 'Share your positive impact on the environment with the world.',
+      subtitle: 'Share with the world your efforts for a greener planet.',
       imageAsset: 'assets/images/onb1.png',
     ),
-    OnboardingPage(
+    const OnboardingPage(
       title: 'Take Actions',
-      subtitle: 'Take actions to protect the environment and preserve nature.',
+      subtitle:
+          'Take actions to protect the environment and preserve our planet.',
       imageAsset: 'assets/images/onb2.png',
     ),
-    OnboardingPage(
+    const OnboardingPage(
       title: 'Learning Resources',
       subtitle:
-          'Learn more about environmental issues and how to make a positive impact.',
+          'Learn more about climate change and how to make a positive difference.',
       imageAsset: 'assets/images/onb3.png',
     ),
-    OnboardingPage(
+    const OnboardingPage(
       title: 'Metrics and Tracking',
-      subtitle: 'Track and measure your positive impact on the environment.',
+      subtitle: 'Monitor your progress towards a more sustainable lifestyle.',
       imageAsset: 'assets/images/onb4.png',
     ),
-    OnboardingPage(
+    const OnboardingPage(
       title: 'Earn Rewards',
-      subtitle: 'Earn rewards for your positive environmental impact.',
+      subtitle: 'Earn rewards for your contributions to a sustainable future.',
       imageAsset: 'assets/images/onb5.png',
     ),
   ];
@@ -170,7 +171,7 @@ class OnboardingPage extends StatelessWidget {
             height: 32.0,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(
               title,
               style: const TextStyle(
@@ -181,7 +182,7 @@ class OnboardingPage extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(
               subtitle,
               textAlign: TextAlign.center,

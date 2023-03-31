@@ -124,23 +124,23 @@ class ProfileScreen extends StatelessWidget {
                       color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const SizedBox(height: 20),
-                          const FaIcon(
+                        children: const [
+                          SizedBox(height: 20),
+                          FaIcon(
                             size: 60,
                             FontAwesomeIcons.lightbulb,
                             color: Colors.white,
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'My Actions',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
                         ],
                       )),
                 ),
@@ -160,23 +160,23 @@ class ProfileScreen extends StatelessWidget {
                       color: Colors.teal,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const SizedBox(height: 20),
-                          const FaIcon(
+                        children: const [
+                          SizedBox(height: 20),
+                          FaIcon(
                             size: 60,
                             FontAwesomeIcons.award,
                             color: Colors.white,
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'My Badges',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
                         ],
                       )),
                 ),
@@ -234,7 +234,7 @@ class ProfileScreen extends StatelessWidget {
               size: 100,
             ),
             const SizedBox(height: 20),
-            Text(
+            const Text(
               'You are not logged in',
               style: TextStyle(
                 fontSize: 24,
@@ -242,7 +242,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
+            const Text(
               'To access this feature, please log in.',
               style: TextStyle(
                 fontSize: 18,

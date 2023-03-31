@@ -64,7 +64,7 @@ Widget badgeList(List<Badges> badges, int _points) {
       ? Container(
           padding: const EdgeInsets.all(16.0),
           alignment: Alignment.center,
-          child: Text(
+          child: const Text(
             'No badges yet!',
             style: TextStyle(
               fontSize: 20.0,
@@ -88,7 +88,7 @@ Widget badgeList(List<Badges> badges, int _points) {
                       ),
                       title: Text(
                         badge.title ?? '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -105,13 +105,13 @@ Widget noBadges() {
     alignment: Alignment.center,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: const [
         Icon(
           Icons.emoji_events_outlined,
           size: 80,
           color: Colors.grey,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Text(
           'No badges yet',
           style: TextStyle(
@@ -120,7 +120,7 @@ Widget noBadges() {
             color: Colors.grey,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         Text(
           'Keep exploring and earn badges!',
           style: TextStyle(

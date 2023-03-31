@@ -11,8 +11,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -30,8 +30,8 @@ class LoginScreen extends StatelessWidget {
               'assets/images/logo_clean.png',
               height: 200,
             ),
-            SizedBox(height: 24),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               'Welcome to Ecoflow!',
               style: TextStyle(
                 fontSize: 32,
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
             LoginButton(
               color: Colors.white,
               outline: Colors.white,
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                 AuthService.googleLogin();
               },
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             LoginButton(
               textColour: Colors.white,
               color: Colors.transparent,
