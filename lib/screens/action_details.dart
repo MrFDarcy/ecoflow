@@ -72,7 +72,7 @@ class _ActionDetailsState extends State<ActionDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ActionDetails'),
+        title: const Text('Action Details'),
       ),
       body: Column(
         children: [

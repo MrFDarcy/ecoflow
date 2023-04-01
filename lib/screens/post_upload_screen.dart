@@ -103,7 +103,7 @@ class _PostUploadScreenState extends State<PostUploadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PostUploadScreen'),
+        title: const Text('Upload Post'),
       ),
       body: SingleChildScrollView(
         child: Center(
