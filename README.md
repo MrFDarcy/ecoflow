@@ -35,7 +35,7 @@ To get started with Ecoflow, follow these steps:
 ### 1. Clone the repository by running the following command in your terminal:
 
 ```
-git clonehttps://github.com/MrFDarcy/ecoflow.git
+git clone https://github.com/MrFDarcy/ecoflow.git
 ```
 
 ### 2. Change into the project directory:
